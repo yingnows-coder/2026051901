@@ -23,7 +23,7 @@ with st.sidebar:
 
     tag = st.pills(
       "行程屬性",
-      ["#工作", "#家庭", "#緊急"])
+      ["#工作", "#家庭", "#緊急", "#孩子"])
     view = st.segmented_control(
   "檢視模式",
   ["月視角", "週視角"],
