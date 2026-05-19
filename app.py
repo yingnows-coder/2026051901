@@ -58,11 +58,6 @@ with l:
 # ================= 右欄：記憶 + 預覽 =================
 with r:
 
-            # -------- 最新行程 --------
-        st.write("### 最新行程預覽")
-
-        latest = st.session_state.events[-1]
-    
     st.write("## 已儲存行程（記憶功能）")
 
     if len(st.session_state.events) == 0:
@@ -82,7 +77,10 @@ with r:
             st.write(f"提醒：提前 {event['remind']} 分鐘")
             st.divider()
 
+        # -------- 最新行程 --------
+        st.write("### 最新行程預覽")
 
+        latest = st.session_state.events[-1]
 
         st.success(latest["title"])
         st.write(f"📅 {latest['date']}  🕒 {latest['time']}")
