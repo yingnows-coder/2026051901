@@ -23,6 +23,11 @@ with st.sidebar:
     tag = st.pills(
       "行程屬性",
       ["#工作", "#家庭", "#緊急"])
+    view = st.segmented_control(
+  "檢視模式",
+  ["月視角", "週視角"],
+  default="月視角"
+)
 
 # ---------------- 主畫面 ----------------
 st.title("微型 TimeTree")
@@ -34,11 +39,6 @@ status = st.segmented_control(
     default="全部"
 )
 
-view = st.segmented_control(
-  "檢視模式",
-  ["月視角", "週視角"],
-  default="月視角"
-)
 
 note = st.text_area(
   "行程備忘錄 / 詳細說明"
