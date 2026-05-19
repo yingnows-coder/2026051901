@@ -30,7 +30,34 @@ status = st.segmented_control(
     default="全部"
 )
 
+view = st.segmented_control(
+  "檢視模式",
+  ["月視角", "週視角"],
+  default="月視角"
+)
+
+tag = st.pills(
+  "行程屬性",
+  ["#工作", "#家庭", "#緊急"]
+)
+
+note = st.text_area(
+  "行程備忘錄 / 詳細說明"
+)
+
 st.write(f"目前狀態：{status}")
+
+is_open = st.toggle(
+  "開啟 24H 郵件自動發信通知",
+  value=True
+)
+
+mins = st.number_input(
+ "行程開始前幾分鐘提醒？",
+ min_value=0, max_value=60,
+ value=15
+)
+
 
 st.divider()
 
@@ -79,8 +106,4 @@ if st.button("新增行程"):
     st.write(f" 日期：{today}")
     st.write(f" 時間：{meeting_time}")
 
-view = st.segmented_control(
-  "檢視模式",
-  ["月視角", "週視角"],
-  default="月視角"
-)
+
