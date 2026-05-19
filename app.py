@@ -20,3 +20,43 @@ with l:
         txt = str(f"行程主旨:{t1},日期選擇:{t3},時間選擇:{t4},幾分鐘前提醒:{n1}")
 with r:
     st.write(txt)
+ # 存入記憶
+        st.session_state.events.append(event_data)
+
+        st.success("行程已加入！")
+
+    st.divider()
+
+    # -------- 記憶功能 --------
+    st.write("## 已儲存行程")
+
+    if len(st.session_state.events) == 0:
+        st.info("目前沒有行程")
+
+    else:
+        for idx, event in enumerate(st.session_state.events, start=1):
+
+            st.write(f"### 行程 {idx}")
+
+            st.write(f"📌 主旨：{event['title']}")
+            st.write(f"📅 日期：{event['date']}")
+            st.write(f"🕒 時間：{event['time']}")
+            st.write(f"⏰ 提醒：提前 {event['remind']} 分鐘")
+
+            st.divider()
+
+# ================= 右欄 =================
+with r:
+
+    st.write("## 行程預覽")
+
+    if len(st.session_state.events) == 0:
+        st.warning("尚未新增任何行程")
+
+    else:
+        latest = st.session_state.events[-1]
+
+        st.write(f"📌 行程主旨：{latest['title']}")
+        st.write(f"📅 日期：{latest['date']}")
+        st.write(f"🕒 時間：{latest['time']}")
+        st.write(f"⏰ 提醒：{latest['remind']} 分鐘前")
