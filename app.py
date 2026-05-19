@@ -44,44 +44,46 @@ with l:
 
     if st.button("新增行程"):
 
-        event_data = {
+        st.session_state.events.append({
             "title": t1,
             "date": t3,
             "time": t4,
             "remind": n1
-        }
-
-        st.session_state.events.append(event_data)
+        })
 
         st.success("行程已加入！")
+        st.rerun()
 
-# ================= 右欄：記憶 + 預覽 =================
+# ================= 右欄：記憶 + 刪除 =================
 with r:
 
-    st.write("## 已儲存行程（記憶功能）")
+    st.write("## 已儲存行程")
 
-    if len(st.session_state.events) == 0:
+    if not st.session_state.events:
         st.info("目前尚無任何行程")
 
     else:
 
-        # -------- 所有歷史行程 --------
-        st.write("### 行程清單")
+        for idx, event in enumerate(st.session_state.events):
 
-        for idx, event in enumerate(st.session_state.events, start=1):
+            col_a, col_b = st.columns([4, 1])
 
-            st.write(f"### 📌 行程 {idx}")
-            st.write(f"主旨：{event['title']}")
-            st.write(f"日期：{event['date']}")
-            st.write(f"時間：{event['time']}")
-            st.write(f"提醒：提前 {event['remind']} 分鐘")
+            with col_a:
+                st.write(f"### 📌 {event['title']}")
+                st.write(f"📅 {event['date']}  🕒 {event['time']}")
+                st.write(f"⏰ 提前 {event['remind']} 分鐘")
+
+            with col_b:
+                if st.button("刪除", key=f"del_{idx}"):
+                    st.session_state.events.pop(idx)
+                    st.rerun()
+
             st.divider()
 
-        # -------- 最新行程 --------
+        # 最新行程
         st.write("### 最新行程預覽")
 
         latest = st.session_state.events[-1]
 
         st.success(latest["title"])
-        st.write(f"📅 {latest['date']}  🕒 {latest['time']}")
-        st.write(f"⏰ 提醒 {latest['remind']} 分鐘前")
+        st.write(f"📅 {latest['date']} 🕒 {latest['time']}")
