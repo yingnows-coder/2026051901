@@ -14,8 +14,10 @@ with st.sidebar:
     st.write("## 行事曆群組")
 
     group = st.radio(
-        "選擇群組",
-        ["工作", "家庭", "學校"]) (horizontal= ture)
+    "選擇群組",
+    ["工作", "家庭", "學校"],
+    horizontal=True
+)
 
     st.success(f"目前群組：{group}")
 
