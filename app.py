@@ -78,7 +78,7 @@ with left_col:
 )
     my_color = st.color_picker(
  "挑選辨識顏色",
- "#1A73E8"
+ "#1A50E8"
 )
 
 
