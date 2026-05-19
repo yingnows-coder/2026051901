@@ -52,7 +52,24 @@ with l:
             "remind": n1
         }
 
-        # 存入記憶
+       
+# ================= 右欄 =================
+with r:
+
+    st.write("## 行程預覽")
+
+    if len(st.session_state.events) == 0:
+        st.warning("尚未新增任何行程")
+
+    else:
+        latest = st.session_state.events[-1]
+
+        st.write(f"📌 行程主旨：{latest['title']}")
+        st.write(f"📅 日期：{latest['date']}")
+        st.write(f"🕒 時間：{latest['time']}")
+        st.write(f"⏰ 提醒：{latest['remind']} 分鐘前")
+
+ # 存入記憶
         st.session_state.events.append(event_data)
 
         st.success("行程已加入！")
@@ -77,18 +94,3 @@ with l:
 
             st.divider()
 
-# ================= 右欄 =================
-with r:
-
-    st.write("## 行程預覽")
-
-    if len(st.session_state.events) == 0:
-        st.warning("尚未新增任何行程")
-
-    else:
-        latest = st.session_state.events[-1]
-
-        st.write(f"📌 行程主旨：{latest['title']}")
-        st.write(f"📅 日期：{latest['date']}")
-        st.write(f"🕒 時間：{latest['time']}")
-        st.write(f"⏰ 提醒：{latest['remind']} 分鐘前")
