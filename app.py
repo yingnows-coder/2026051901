@@ -70,10 +70,7 @@ with left_col:
       "行程主旨",
       placeholder="請填寫會議名稱...")
 
-        today = st.date_input(
-          "選擇日期",
-          datetime.date.today()
-                                )
+        today = st.date_input("選擇日期", datetime.date.today())
 
 
 
