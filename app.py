@@ -16,11 +16,17 @@ with st.container(border=True):
 with col_center: 
   st.write("###  看板區") 
   st.info("主要行程訊息放中間")
+   with st.expander("查看進階提醒參數設定"):
+    st.write("這裡是發信伺服器的底層設定...") 
 
 with col_right: 
   st.write("###  設定區") 
   st.button("控制項放右邊")
+@st.dialog("系統公告")
+def show_alert():
+    st.write("本週作業請確認 requirements.txt 有正確設定！")
+if st.button("查看公告"): show_alert()
+    
 
 
-with st.expander("查看進階提醒參數設定"):
-    st.write("這裡是發信伺服器的底層設定...")
+
