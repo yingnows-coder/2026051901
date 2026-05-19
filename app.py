@@ -1,4 +1,6 @@
 import streamlit as st
+import calendar
+from datetime import date
 
 # ---------------- 網頁設定 ----------------
 st.set_page_config(
@@ -24,11 +26,11 @@ with st.sidebar:
 
     st.divider()
 
-    # 顯示公告
+    # 公告區
     st.write("### 系統公告")
     st.info(st.session_state.announcement)
 
-    # -------- Dialog --------
+    # Dialog
     @st.dialog("編輯公告")
     def edit_announcement():
 
@@ -41,7 +43,6 @@ with st.sidebar:
             st.session_state.announcement = new_text
             st.rerun()
 
-    # 開啟 Dialog
     if st.button("編輯公告"):
         edit_announcement()
 
@@ -53,29 +54,46 @@ with left_col:
 
     st.write("## 新增行程")
 
-    st.info("請輸入新的行程資訊")
-
     title = st.text_input("行程名稱")
 
-    date = st.date_input("日期")
+    event_date = st.date_input(
+        "日期",
+        value=date.today()
+    )
 
-    time = st.time_input("時間")
+    event_time = st.time_input("時間")
 
     st.button("新增行程")
 
 # -------- 右欄 --------
 with right_col:
 
+    # ===== 月曆 =====
+    with st.container(border=True):
+
+        st.write("## 本月行事曆")
+
+        today = date.today()
+
+        year = today.year
+        month = today.month
+
+        cal = calendar.month(year, month)
+
+        st.text(cal)
+
+    st.write("")
+
+    # ===== Tabs =====
     with st.container(border=True):
 
         st.write("## 行程總覽")
 
-        # Tabs
         tab1, tab2 = st.tabs(
             ["本月行程", "已封存行程"]
         )
 
-        # -------- Tab1 --------
+        # -------- 本月行程 --------
         with tab1:
 
             st.write("### 本月行程")
@@ -88,7 +106,7 @@ with right_col:
             st.write("📌 專題會議")
             st.write("🕒 15:00")
 
-        # -------- Tab2 --------
+        # -------- 已封存 --------
         with tab2:
 
             st.write("### 已封存行程")
