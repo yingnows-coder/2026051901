@@ -79,14 +79,8 @@ if st.button("新增行程"):
     st.write(f" 日期：{today}")
     st.write(f" 時間：{meeting_time}")
 
-    st.markdown(
-        f"""
-        <div style="
-            width:100px;
-            height:30px;
-            background:{my_color};
-            border-radius:10px;">
-        </div>
-        """,
-        unsafe_allow_html=True
-    )
+view = st.segmented_control(
+  "檢視模式",
+  ["月視角", "週視角"],
+  default="月視角"
+)
