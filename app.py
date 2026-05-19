@@ -16,7 +16,7 @@ with st.container(border=True):
 with col_center: 
   st.write("###  看板區") 
   st.info("主要行程訊息放中間")
-   with st.expander("查看進階提醒參數設定"):
+with st.expander("查看進階提醒參數設定"):
     st.write("這裡是發信伺服器的底層設定...") 
 
 with col_right: 
