@@ -15,8 +15,7 @@ with st.sidebar:
 
     group = st.radio(
         "選擇群組",
-        ["工作", "家庭", "學校"]
-    )
+        ["工作", "家庭", "學校"]) (horizontal= ture)
 
     st.success(f"目前群組：{group}")
 
