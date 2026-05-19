@@ -64,7 +64,15 @@ with left_col:
     event_time = st.time_input("時間")
 
     st.button("新增行程")
-    
+    title = st.text_input(
+      "行程主旨",
+      placeholder="請填寫會議名稱...")
+
+
+
+
+
+
 st.write("上面是大標題")
 st.divider()
 st.write("下面是內容區塊")
