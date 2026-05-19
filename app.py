@@ -1,5 +1,6 @@
 import streamlit as st
 
+# 網頁設定
 st.set_page_config(
     page_title="微型 TimeTree",
     layout="wide"
@@ -7,56 +8,60 @@ st.set_page_config(
 
 # ---------------- Sidebar ----------------
 with st.sidebar:
-    st.write("### 行事曆群組")
+    st.write("## 行事曆群組")
 
-    st.radio(
+    group = st.radio(
         "選擇群組",
         ["工作", "家庭", "學校"]
     )
 
-    # Dialog 定義
-    @st.dialog("系統公告")
-    def show_alert():
-        st.write("本週作業請確認 requirements.txt 有正確設定！")
-
-    # Dialog 按鈕
-    if st.button("查看公告"):
-        show_alert()
-
+    st.success(f"目前群組：{group}")
 
 # ---------------- Main Layout ----------------
-col_left, col_center, col_right = st.columns(
-    [1, 2, 1.2],
-    gap="large"
-)
+left_col, right_col = st.columns([1, 3])
 
-# -------- Left --------
-with col_left:
-    st.write("### 新增區")
+# -------- 左欄：新增行程 --------
+with left_col:
+    st.write("## 新增行程")
 
-    st.button("按鈕放左邊")
+    st.info("請輸入新的行程資訊")
 
+    title = st.text_input("行程名稱")
+
+    date = st.date_input("日期")
+
+    time = st.time_input("時間")
+
+    st.button("新增行程")
+
+# -------- 右欄：行程看板 --------
+with right_col:
+
+    # 外框容器
     with st.container(border=True):
-        st.write("📌 標題：開學典禮")
-        st.write("🕘 時間：09:00")
 
+        st.write("## 行程總覽")
 
-# -------- Center --------
-with col_center:
-    st.write("### 看板區")
+        # Tabs 分頁
+        tab1, tab2 = st.tabs(
+            ["本月行程", "已封存行程"]
+        )
 
-    st.info("主要行程訊息放中間")
+        # -------- Tab 1 --------
+        with tab1:
+            st.write("### 本月行程")
 
-    with st.expander("查看進階提醒參數設定"):
-        st.write("這裡是發信伺服器的底層設定...")
+            st.write("📌 開學典禮")
+            st.write("🕘 09:00")
 
+            st.divider()
 
-# -------- Right --------
-with col_right:
-    st.write("### 設定區")
+            st.write("📌 專題會議")
+            st.write("🕒 15:00")
 
-    st.button("控制項放右邊")
-    
+        # -------- Tab 2 --------
+        with tab2:
+            st.write("### 已封存行程")
 
-
-
+            st.write("✅ 寒假旅遊")
+            st.write("✅ 期末聚餐")
