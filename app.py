@@ -47,7 +47,7 @@ with st.sidebar:
         edit_announcement()
 
 # ---------------- Main Layout ----------------
-left_col, right_col = st.columns([1, 3])
+left_col, right_col = st.columns([1, 1])
 
 # -------- 左欄 --------
 with left_col:
