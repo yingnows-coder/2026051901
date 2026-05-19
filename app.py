@@ -75,9 +75,9 @@ if st.button("新增行程"):
 
     st.write("### 行程預覽")
 
-    st.write(f"📌 主旨：{title}")
-    st.write(f"📅 日期：{today}")
-    st.write(f"🕒 時間：{meeting_time}")
+    st.write(f" 主旨：{title}")
+    st.write(f" 日期：{today}")
+    st.write(f" 時間：{meeting_time}")
 
     st.markdown(
         f"""
