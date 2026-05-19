@@ -21,7 +21,7 @@ mode = st.radio(
 # ---------------- 左右欄 ----------------
 l, r = st.columns(2)
 
-# ================= 左欄 =================
+# ================= 左欄：新增行程 =================
 with l:
 
     st.write("## 新增行程")
@@ -42,7 +42,6 @@ with l:
         value=15
     )
 
-    # -------- 新增按鈕 --------
     if st.button("新增行程"):
 
         event_data = {
@@ -52,45 +51,37 @@ with l:
             "remind": n1
         }
 
-       
-# ================= 右欄 =================
-with r:
-
-    st.write("## 行程預覽")
-
-    if len(st.session_state.events) == 0:
-        st.warning("尚未新增任何行程")
-
-    else:
-        latest = st.session_state.events[-1]
-
-        st.write(f"📌 行程主旨：{latest['title']}")
-        st.write(f"📅 日期：{latest['date']}")
-        st.write(f"🕒 時間：{latest['time']}")
-        st.write(f"⏰ 提醒：{latest['remind']} 分鐘前")
-
- # 存入記憶
         st.session_state.events.append(event_data)
 
         st.success("行程已加入！")
 
-    st.divider()
+# ================= 右欄：記憶 + 預覽 =================
+with r:
 
-    # -------- 記憶功能 --------
-    st.write("## 已儲存行程")
+    st.write("## 已儲存行程（記憶功能）")
 
     if len(st.session_state.events) == 0:
-        st.info("目前沒有行程")
+        st.info("目前尚無任何行程")
 
     else:
+
+        # -------- 所有歷史行程 --------
+        st.write("### 行程清單")
+
         for idx, event in enumerate(st.session_state.events, start=1):
 
-            st.write(f"### 行程 {idx}")
-
-            st.write(f"📌 主旨：{event['title']}")
-            st.write(f"📅 日期：{event['date']}")
-            st.write(f"🕒 時間：{event['time']}")
-            st.write(f"⏰ 提醒：提前 {event['remind']} 分鐘")
-
+            st.write(f"### 📌 行程 {idx}")
+            st.write(f"主旨：{event['title']}")
+            st.write(f"日期：{event['date']}")
+            st.write(f"時間：{event['time']}")
+            st.write(f"提醒：提前 {event['remind']} 分鐘")
             st.divider()
 
+        # -------- 最新行程 --------
+        st.write("### 最新行程預覽")
+
+        latest = st.session_state.events[-1]
+
+        st.success(latest["title"])
+        st.write(f"📅 {latest['date']}  🕒 {latest['time']}")
+        st.write(f"⏰ 提醒 {latest['remind']} 分鐘前")
