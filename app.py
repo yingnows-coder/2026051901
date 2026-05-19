@@ -1,6 +1,8 @@
 import streamlit as st
 import calendar
+import datetime
 from datetime import date
+
 
 # ---------------- 網頁設定 ----------------
 st.set_page_config(
@@ -68,6 +70,10 @@ with left_col:
       "行程主旨",
       placeholder="請填寫會議名稱...")
 
+        today = st.date_input(
+          "選擇日期",
+          datetime.date.today()
+                                )
 
 
 
