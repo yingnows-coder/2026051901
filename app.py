@@ -73,7 +73,9 @@ with left_col:
   "選擇日期",
   datetime.date.today()
 )
-
+    meeting_time = st.time_input(
+  "選擇時間"
+)
 
 
 
