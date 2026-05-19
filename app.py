@@ -44,7 +44,7 @@ with left_input:
 
     title = st.text_input(
         "行程主旨",
-        placeholder="請填寫會議名稱..."
+        placeholder="請填寫行程名稱..."
     )
 
     my_color = st.color_picker(
