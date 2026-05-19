@@ -21,3 +21,5 @@ with col_right:
 with st.container(border=True): 
     st.write(" 標題：開學典禮") 
     st.write(" 時間：09:00")
+with st.expander("查看進階提醒參數設定"):
+    st.write("這裡是發信伺服器的底層設定...")"
