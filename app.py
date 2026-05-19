@@ -110,20 +110,3 @@ with right_col:
 
             st.write("✅ 寒假旅遊")
             st.write("✅ 期末聚餐")
-
-# ===== 月曆 =====
-    with st.container(border=True):
-
-        st.write("## 本月行事曆")
-
-        today = date.today()
-
-        year = today.year
-        month = today.month
-
-        cal = calendar.month(year, month)
-
-        st.text(cal)
-
-    st.write("")
-
