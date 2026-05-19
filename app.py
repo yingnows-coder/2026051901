@@ -110,6 +110,3 @@ with right_col:
 
             st.write("📌 專題會議")
             st.write("🕒 15:00")
-
-        # -------- 已封存 --------
-        with tab2:
