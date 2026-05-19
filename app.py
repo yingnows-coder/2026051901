@@ -106,9 +106,6 @@ with right_col:
         # -------- 已封存 --------
         with tab2:
 
-
-import streamlit as st
-
 st.write("---")  # 水平分隔線
 
 st.write("## 後台控制列")
