@@ -1,27 +1,58 @@
 import streamlit as st
 import datetime
 
-st.set_page_config(page_title="微型 TimeTree", layout="wide")
-mode = st.radio("選擇群組" , ["學生" , "老師" , "家長會" , "校友會"],horizontal=True)
+# ---------------- 網頁設定 ----------------
+st.set_page_config(
+    page_title="微型 TimeTree",
+    layout="wide"
+)
 
-txt =""
-l , r = st.columns(2)
+# ---------------- Session State ----------------
+if "events" not in st.session_state:
+    st.session_state.events = []
 
+# ---------------- 群組選擇 ----------------
+mode = st.radio(
+    "選擇群組",
+    ["學生", "老師", "家長會", "校友會"],
+    horizontal=True
+)
+
+# ---------------- 左右欄 ----------------
+l, r = st.columns(2)
+
+# ================= 左欄 =================
 with l:
-    t1=st.text_input("行程主旨")
-    t3=st.date_input("日期選擇" , datetime.date.today())
-    t4=st.time_input("時間選擇")
-    n1=mins = st.number_input(
-     "行程開始前幾分鐘提醒？",
-     min_value=0, max_value=60,
-     value=15
+
+    st.write("## 新增行程")
+
+    t1 = st.text_input("行程主旨")
+
+    t3 = st.date_input(
+        "日期選擇",
+        datetime.date.today()
     )
+
+    t4 = st.time_input("時間選擇")
+
+    n1 = st.number_input(
+        "行程開始前幾分鐘提醒？",
+        min_value=0,
+        max_value=60,
+        value=15
+    )
+
+    # -------- 新增按鈕 --------
     if st.button("新增行程"):
-        txt = str(f"行程主旨:{t1},日期選擇:{t3},時間選擇:{t4},幾分鐘前提醒:{n1}")
-with r:
-    st.write(txt)
-    
- # 存入記憶
+
+        event_data = {
+            "title": t1,
+            "date": t3,
+            "time": t4,
+            "remind": n1
+        }
+
+        # 存入記憶
         st.session_state.events.append(event_data)
 
         st.success("行程已加入！")
