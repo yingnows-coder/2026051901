@@ -20,6 +20,7 @@ with l:
         txt = str(f"行程主旨:{t1},日期選擇:{t3},時間選擇:{t4},幾分鐘前提醒:{n1}")
 with r:
     st.write(txt)
+    
  # 存入記憶
         st.session_state.events.append(event_data)
 
